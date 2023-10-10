@@ -9,7 +9,7 @@
 #
 # YOUR COMMENTS INCLUDING CITATIONS
 #
-# YOUR NAME - THE DATE
+# Gustavo Castañeda - 10/09/2023
 #
 
 
@@ -24,5 +24,32 @@ def greedy_search(problem, h, repeat_check=False):
     state checking if the provided boolean argument is true."""
 
     # PLACE YOUR CODE HERE
+    initial_node = Node(problem.start)
+    if problem.is_goal(initial_node.loc):
+        return initial_node
+
+    frontier = Frontier(initial_node, f'{h}')
+    reached_set = set()
+
+    if repeat_check:
+        reached_set.add(initial_node.loc)
+
+    while not frontier.is_empty():
+        popped_node = frontier.pop()
+        if problem.is_goal(popped_node.loc):
+            return popped_node
+        for child in popped_node.expand(problem):
+            if repeat_check:
+                child_loc = child.loc
+                if child_loc in reached_set:
+                    #print(f'Child_loc Path cost {Node.value(popped_node)}.')
+                    frontier.pop()
+                    frontier.add(child)
+                else:
+                    frontier.add(child)
+                    reached_set.add(child)
+            else:
+                frontier.add(child)
+                reached_set.add(child)
 
     return None

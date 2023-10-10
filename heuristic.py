@@ -13,7 +13,9 @@
 # YOUR COMMENTS INCLUDING CITATIONS
 #
 # Gustavo Castañeda - 10/08/2023
-# Comments:
+# Comments: Use a Manhattan Distance approach to find the best
+# cost-effective route. This means we will use the values of
+# the vertices to determine which path to take.
 
 
 import route
@@ -27,15 +29,22 @@ class HeuristicFunction:
     def __init__(self, problem=None):
         self.problem = problem
         # PLACE ANY INITIALIZATION CODE HERE
+        self.goal = problem.goal
+        self.map = problem.map
+
 
     def h_cost(self, loc=None):
         """An admissible heuristic function, estimating the cost from
         the specified location to the goal state of the problem."""
         # a heuristic value of zero is admissible but not informative
         value = 0.0
+        goal = self.problem.goal
+        problem = self.problem
+
         if loc is None:
             return value
         else:
             # PLACE YOUR CODE FOR CALCULATING value OF loc HERE
-            return value
+            #value = 3.1
 
+            return value

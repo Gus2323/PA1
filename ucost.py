@@ -29,6 +29,7 @@ def uniform_cost_search(problem, repeat_check=False):
 
     frontier = Frontier(initial_node, False)  # queue
     reached_set = set()
+
     if repeat_check:
         reached_set.add(initial_node.loc)
 
