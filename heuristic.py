@@ -13,8 +13,8 @@
 # YOUR COMMENTS INCLUDING CITATIONS
 #
 # Gustavo Castañeda - 10/08/2023
-# Comments: Use a Manhattan Distance approach to find the best
-# cost-effective route. This means we will use the values of
+# Comments: Professor David gave a tip on how to come up with
+# a heuristic function that calculates mpg. This means we will use the values of
 # the vertices to determine which path to take.
 
 
@@ -33,6 +33,7 @@ class HeuristicFunction:
         self.map = problem.map
 
 
+
     def h_cost(self, loc=None):
         """An admissible heuristic function, estimating the cost from
         the specified location to the goal state of the problem."""
@@ -45,6 +46,13 @@ class HeuristicFunction:
             return value
         else:
             # PLACE YOUR CODE FOR CALCULATING value OF loc HERE
-            #value = 3.1
+            miles = problem.euclidean_distance(loc, goal) #distance from goal
+            roads = problem.actions(loc) #all possible nodes
+            gallon = 0
+
+            for i in roads:  #iterate through nodes to get mpg
+                node = problem.result(loc, i)
+                gallon = gallon + problem.action_cost(loc, node)
+                value = miles / gallon  # mpg calculated
 
             return value

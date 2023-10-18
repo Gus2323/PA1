@@ -27,7 +27,7 @@ def a_star_search(problem, h, repeat_check=False):
     if problem.is_goal(initial_node.loc):
         return initial_node
 
-    frontier = Frontier(initial_node, f'{h}')
+    frontier = Frontier(initial_node, {h})
     reached_set = set()
 
     if repeat_check:
